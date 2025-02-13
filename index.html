@@ -1,105 +1,114 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Agende agora mesmo o banho e tosa do seu pet com praticidade e rapidez! Na Dudu Pet Shop, a comodidade está a um clique de distância. Seu pet merece esse cuidado especial!">
+    <meta name="description" content="Agende agora mesmo o banho e tosa do seu pet com praticidade e rapidez! Na Dudu Pet Shop, a comodidade está a um clique de distância. Seu pet merece esse cuidado especial!">
     <title>Dudu Pet Shop: Agende Banho e Tosa com Facilidade!</title>
-
+    
     <!-• Bootstrap -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-        <!-• Font Awesome -->
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
-            <style>
-                body {
-                    font-family: 'Montserrat', sans-serif;
-                    background-color: #f8f9fa;
-                    color: #333;
-                }
-
-                header {
-                    background-color: #ffcc00;
-                    text-align: center;
-                    padding: 20px;
-                }
-
-                .whatsapp {
-                    display: inline-block;
-                    background-color: #25D366;
-                    color: white;
-                    padding: 10px 20px;
-                    text-decoration: none;
-                    border-radius: 5px;
-                }
-
-                .agendamento {
-                    margin: 20px;
-                    text-align: center;
-                }
-
-                .agendamento form {
-                    max-width: 400px;
-                    margin: auto;
-                }
-
-                .agendamento input {
-                    width: 100%;
-                    padding: 10px;
-                    margin: 10px 0;
-                    border: 1px solid #ddd;
-                    border-radius: 5px;
-                }
-
-                .agendamento button {
-                    width: 100%;
-                    padding: 10px;
-                    background-color: #28a745;
-                    color: white;
-                    border: none;
-                    border-radius: 5px;
-                    cursor: pointer;
-                }
-
-                .agendamento button:hover {
-                    background-color: #218838;
-                }
-
-                footer {
-                    text-align: center;
-                    padding: 10px;
-                    background-color: #f1f1f1;
-                    margin-top: 20px;
-                }
-            </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-• Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        header {
+            background-color: #ffcc00;
+            text-align: center;
+            padding: 20px;
+        }
+        .whatsapp {
+            display: inline-block;
+            background-color: #25D366;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .agendamento {
+            margin: 20px;
+            text-align: center;
+        }
+        .agendamento form {
+            max-width: 400px;
+            margin: auto;
+        }
+        .agendamento input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .agendamento button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .agendamento button:hover {
+            background-color: #218838;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #f1f1f1;
+            margin-top: 20px;
+        }
+    </style>
 </head>
-
 <body>
     <header>
         <h1>Dudu Pet Shop</h1>
         <p>Agende seu banho com praticidade!</p>
-        <a href="https://api.whatsapp.com/send/?phone=5516992320582&text=Ol%C3%A1&type=phone_number&app_absent=0"
-            class="whatsapp" target="_blank">Contato via WhatsApp</a>
+        <a href="https://api.whatsapp.com/send/?phone=5516992320582&text=Ol%C3%A1&type=phone_number&app_absent=0" class="whatsapp" target="_blank">Contato via WhatsApp</a>
     </header>
-
+    
     <section class="agendamento">
         <h2>Agende já!</h2>
-        <form action="#" method="post">
-            <input type="text" placeholder="Seu Nome" required>
-            <input type="tel" placeholder="Seu Telefone" required>
-            <input type="text" placeholder="Serviço desejado" required>
+        <form onsubmit="sendToWhatsApp(event)">
+            <input type="text" id="nome" placeholder="Seu Nome" required>
+            <input type="tel" id="telefone" placeholder="Seu Telefone" required>
+            <input type="text" id="servico" placeholder="Serviço desejado" required>
             <button type="submit">Agende Já</button>
         </form>
     </section>
-
+    
     <footer>
         <p>Conheça nossos planos e serviços!</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    <script>
+        function sendToWhatsApp(event) {
+            event.preventDefault(); // Impede o envio do formulário
 
+            // Obtém os valores dos campos
+            var nome = document.getElementById('nome').value;
+            var telefone = document.getElementById('telefone').value;
+            var servico = document.getElementById('servico').value;
+
+            // Cria a mensagem para o WhatsApp
+            var mensagem = Olá, gostaria de agendar o seguinte serviço:\n\nNome: ${nome}\nTelefone: ${telefone}\nServiço: ${servico};
+            
+            // Codifica a mensagem para uso na URL
+            var mensagemCodificada = encodeURIComponent(mensagem);
+
+            // Cria o link do WhatsApp
+            var linkWhatsApp = https://api.whatsapp.com/send/?phone=5516992320582&text=${mensagemCodificada}&type=phone_number&app_absent=0;
+
+            // Abre o link do WhatsApp
+            window.open(linkWhatsApp, '_blank');
+        }
+    </script>
+</body>
 </html>
